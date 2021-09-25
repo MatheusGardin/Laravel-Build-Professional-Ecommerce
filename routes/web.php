@@ -24,3 +24,6 @@ Route::get('/home', function () {
 Route::get('/about', function () {
     echo 'This is About page';
 })->middleware('checkage');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
