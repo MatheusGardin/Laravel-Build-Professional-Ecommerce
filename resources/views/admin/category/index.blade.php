@@ -36,13 +36,13 @@
                                     <tr>
                                         <th scope="row"> {{ $categories->firstItem()+$loop->index }} </th>
                                         <td> {{ $category->category_name }} </td>
-                                        <td> {{ $category->user->name }} </td>
+                                        <td> {{ $category->name }} </td>
                                         <td>
                                             @if($category->created_at === NULL)
                                                 <span class="text-danger"> No Date Set </span>
                                             @else
-                                                {{ $category->created_at->diffForHumans() }}
-                                                {{-- {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }} --}}
+                                                {{-- {{ $category->created_at->diffForHumans() }} --}}
+                                                {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
                                             @endif
                                         </td>
                                     </tr>
