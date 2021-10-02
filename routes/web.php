@@ -22,6 +22,8 @@ Route::get('/about', function () { echo 'This is About page'; })->middleware('ch
 
 Route::get('/category/all', [App\Http\Controllers\CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('/category/add', [App\Http\Controllers\CategoryController::class, 'AddCat'])->name('store.category');
+Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'Edit']);
+Route::post('/category/update/{id}', [App\Http\Controllers\CategoryController::class, 'Update']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // $users = User::all();

@@ -28,6 +28,7 @@
                                     <th scope="col">Category Name</th>
                                     <th scope="col">User</th>
                                     <th scope="col">Created at</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +37,7 @@
                                     <tr>
                                         <th scope="row"> {{ $categories->firstItem()+$loop->index }} </th>
                                         <td> {{ $category->category_name }} </td>
-                                        <td> {{ $category->name }} </td>
+                                        <td> {{ $category->user->name }} </td>
                                         <td>
                                             @if($category->created_at === NULL)
                                                 <span class="text-danger"> No Date Set </span>
@@ -44,6 +45,10 @@
                                                 {{-- {{ $category->created_at->diffForHumans() }} --}}
                                                 {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
                                             @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -60,7 +65,6 @@
                         <div class="card-body">
                             <form action="{{route('store.category')}}" method="POST">
                                 @csrf
-                                <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                                 <div class="form-group">
                                     <label for="category_name">Category Name</label>
                                     <input type="text" class="form-control" id="category_name" name="category_name">
