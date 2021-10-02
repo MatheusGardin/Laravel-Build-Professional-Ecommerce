@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\DB;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     public function AllCat() {
-        return view('admin.category.index');
+        $categories = Category::latest()->paginate(5);
+        // $categories = DB::table('categories')->whereNull('deleted_at')->latest()->paginate(5);
+
+        return view('admin.category.index', compact('categories'));
     }
 
     public function AddCat(Request $request) {
