@@ -20,11 +20,11 @@ Route::get('/home', function () { echo 'This is home page'; });
 
 Route::get('/about', function () { echo 'This is About page'; })->middleware('checkage');
 
-Route::get('/category/all', [App\Http\Controllers\CategoryController::class, 'AllCat'])->name('all.category');
-Route::post('/category/add', [App\Http\Controllers\CategoryController::class, 'AddCat'])->name('store.category');
+Route::get('/category/all', [App\Http\Controllers\CategoryController::class, 'AllCat'])->name('category.all');
+Route::post('/category/add', [App\Http\Controllers\CategoryController::class, 'AddCat'])->name('category.store');
 Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'Edit']);
 Route::post('/category/update/{id}', [App\Http\Controllers\CategoryController::class, 'Update']);
-Route::get('/softDelete/category/{id}', [App\Http\Controllers\CategoryController::class, 'SoftDelete']);
+Route::get('/category/softDelete/{id}', [App\Http\Controllers\CategoryController::class, 'SoftDelete']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // $users = User::all();

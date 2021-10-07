@@ -48,7 +48,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
-                                            <a href="{{ url('softDelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
+                                            <a href="{{ url('category/softDelete/'.$category->id) }}" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -63,7 +63,7 @@
                             Add Category
                         </div>
                         <div class="card-body">
-                            <form action="{{route('store.category')}}" method="POST">
+                            <form action="{{route('category.store')}}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="category_name">Category Name</label>
@@ -116,8 +116,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="{{ url('category/restore/'.$category->id) }}" class="btn btn-info">Restore</a>
+                                            <a href="{{ url('category/delete/'.$category->id) }}" class="btn btn-danger">Permanent Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
