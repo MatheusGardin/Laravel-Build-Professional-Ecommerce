@@ -51,7 +51,7 @@ class CategoryController extends Controller
 
         // Category::create($validatedData);
 
-        return redirect()->back()->with('success', 'Category Inserted Successfull');
+        return redirect()->back()->with('success', 'Category Inserted Successfully');
     }
 
     public function Edit($id) {
@@ -73,12 +73,24 @@ class CategoryController extends Controller
 
         DB::table('categories')->where('id', $id)->update($data);
 
-        return redirect()->route('all.category')->with('success', 'Category Updated Successfull');
+        return redirect()->route('all.category')->with('success', 'Category Updated Successfully');
     }
 
     public function SoftDelete($id) {
         Category::find($id)->delete();
 
-        return redirect()->back()->with('success', 'Category deleted Successfull');
+        return redirect()->back()->with('success', 'Category deleted Successfully');
+    }
+
+    public function Restore($id) {
+        Category::withTrashed()->find($id)->restore();
+
+        return redirect()->back()->with('success', 'Category restored Successfully');
+    }
+
+    public function Destroy($id) {
+        Category::onlyTrashed()->find($id)->forceDelete();
+
+        return redirect()->back()->with('success', 'Category destroyed Successfully');
     }
 }
